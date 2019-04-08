@@ -92,7 +92,7 @@ public class WindguruParser extends TimerTask {
                 List<String> windSpeed = Arrays.asList(winspd.split(","));
 
                 for (int i = 0; i < windSpeed.size(); i++) {
-                    windSpeedInt.add((int)(parseFloat(windSpeed.get(i))+0.5));
+                    windSpeedInt.add(((int)(parseFloat(windSpeed.get(i))+0.5))/2);
                 }
 
        //         wind direction in degrees
@@ -126,7 +126,7 @@ public class WindguruParser extends TimerTask {
         //        wind boost in knot ~m/s*2
                 for (int i = 0; i < gustS.size(); i++) {
                 //
-                     windBoostInt.add((int)(parseFloat(gustS.get(i))+0.5));
+                     windBoostInt.add(((int)(parseFloat(gustS.get(i))+0.5))/2);
                 }
 
 
