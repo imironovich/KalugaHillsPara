@@ -44,38 +44,37 @@ public class AnalizWeatherForecast extends TimerTask {
                                     "SELECT windSpeedInt, windDirInt, windBoostInt, rainInt FROM windGuru WHERE date = '" + thisDay + "' AND hour = '" + hours3 + "'");
 
                             if (rersult.next()) {
-                                //if (rersult.getInt("rainInt") <= 2) {
+
                                     if ((rersult.getInt("rainInt") <= 2) && (rersult.getInt("windSpeedInt") >= 4 && (rersult.getInt("windBoostInt") <= 9)) && (200 > rersult.getInt("windDirInt")) && (rersult.getInt("windDirInt") > 160)) {
                                         System.out.println(
-                                                thisDay + " " + hours3 + " " + rersult.getInt("rainInt") + " " + rersult.getInt("windSpeedInt") + " " + rersult.getInt("windSpeedInt") + " " + rersult.getInt("windBoostInt") + " " + rersult.getInt("windDirInt"));
+                                                thisDay + " " + hours3 + " " + rersult.getInt("rainInt") + " " + rersult.getInt("windSpeedInt") + " " + rersult.getInt("windBoostInt") + " " + rersult.getInt("windDirInt"));
                                         PreparedStatement preparedStatement = connection.prepareStatement(sqlFlying);
                                         preparedStatement.setObject(1, thisDay);
                                         preparedStatement.setInt(2, hours3);
                                         preparedStatement.setInt(3, 1); //ЖЕлохово
                                         preparedStatement.addBatch();
                                         preparedStatement.executeBatch();
-                                       // System.out.println("Жел");
                                     }
-                                    if ((rersult.getInt("rainInt") <= 2) && (rersult.getInt("windSpeedInt") >= 5 && (rersult.getInt("windBoostInt") <= 11)) && (290 > rersult.getInt("windDirInt")) && (rersult.getInt("windDirInt") > 250)) {
+
+                                    else if ((rersult.getInt("rainInt") <= 2) && (rersult.getInt("windSpeedInt") >= 5 && (rersult.getInt("windBoostInt") <= 11)) && (290 > rersult.getInt("windDirInt")) && (rersult.getInt("windDirInt") > 250)) {
                                         System.out.println(
-                                                thisDay + " " + hours3 + " " + rersult.getInt("rainInt") + " " + rersult.getInt("windSpeedInt") + " " + rersult.getInt("windSpeedInt") + " " + rersult.getInt("windBoostInt") + " " + rersult.getInt("windDirInt"));
+                                                thisDay + " " + hours3 + " " + rersult.getInt("rainInt") + " " + rersult.getInt("windSpeedInt") + " " + " " + rersult.getInt("windBoostInt") + " " + rersult.getInt("windDirInt"));
                                         PreparedStatement preparedStatement = connection.prepareStatement(sqlFlying);
                                         preparedStatement.setObject(1, thisDay);
                                         preparedStatement.setInt(2, hours3);
                                         preparedStatement.setInt(3, 2); //Вороново
                                         preparedStatement.addBatch();
                                         preparedStatement.executeBatch();
-                                       // System.out.println("Ворон");
                                     }
-                            //    }
+
                                      else {
                                         PreparedStatement preparedStatement = connection.prepareStatement(sqlFlying);
                                         preparedStatement.setObject(1, thisDay);
                                         preparedStatement.setInt(2, hours3);
-                                        preparedStatement.setInt(3, 0);
+                                        preparedStatement.setInt(3, 3);
                                         preparedStatement.addBatch();
                                         preparedStatement.executeBatch();
-                                       // System.out.println("нигде");
+
                                     }
                             }
                         }

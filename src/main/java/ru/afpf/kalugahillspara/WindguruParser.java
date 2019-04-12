@@ -167,7 +167,7 @@ public class WindguruParser extends TimerTask {
                 LocalDate datenow = LocalDate.now();
 
                 int k = weekdayInt.indexOf(todayOfWeek);
-                for (int i=1; i<10; i++){
+                for (int i=1; i<9; i++){
                     LocalDate thisDay = datenow.plusDays(i);
                     for (int j=0; j<8; j++){
                        int hours3 = (j*3);
