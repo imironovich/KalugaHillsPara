@@ -57,8 +57,9 @@ public class FlyAlert extends TimerTask {
                 nigde = false;
             }
 
-            if (nigde) System.out.println("К сожалению летной погоды на калужских горках в ближайшее время не будет :-(");
-                //bot.sendMess(Integer.parseInt(chatId), "К сожалению летной погоды на калужских горках в ближайшее время не будет :-(");}
+            if (nigde){ System.out.println("К сожалению летной погоды на калужских горках в ближайшее время не будет :-(");
+                bot.sendMess(Integer.parseInt(chatId), "К сожалению летной погоды на калужских горках в ближайшее время не будет :-(");
+                }
 
             } catch(SQLException e){
                 e.printStackTrace();

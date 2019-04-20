@@ -74,7 +74,7 @@ public class WindguruParser extends TimerTask {
 
 
         Calendar calendar = new GregorianCalendar();
-        int todayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        int todayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)-1;
 
         try {
             url = new URL("https://old.windguru.cz/ru/index.php?sc=743917&sty=m_spot");
@@ -87,7 +87,7 @@ public class WindguruParser extends TimerTask {
             int tableStart = allLine.indexOf("var wg_fcst_tab_data_1");
             if (tableStart >0) {
                 String resultStr1 = allLine.substring(tableStart + 1, allLine.indexOf("}}}}", tableStart));
-       //         Wind speed in knot ~ m/s*2
+       //         Wind speed in m/s*2
                 String winspd = resultStr1.substring(resultStr1.indexOf("WINDSPD\":[") + 10, resultStr1.indexOf("]", resultStr1.indexOf("WINDSPD\":[")));
                 List<String> windSpeed = Arrays.asList(winspd.split(","));
 
@@ -123,7 +123,7 @@ public class WindguruParser extends TimerTask {
                 List<String> gustS = Arrays.asList(gust.split(","));
 
 
-        //        wind boost in knot ~m/s*2
+        //        wind boost in m/s*2
                 for (int i = 0; i < gustS.size(); i++) {
                 //
                      windBoostInt.add(((int)(parseFloat(gustS.get(i))+0.5))/2);
@@ -167,7 +167,11 @@ public class WindguruParser extends TimerTask {
                 LocalDate datenow = LocalDate.now();
 
                 int k = weekdayInt.indexOf(todayOfWeek);
-                for (int i=1; i<9; i++){
+                System.out.println(todayOfWeek);
+                System.out.println(weekdayInt);
+                System.out.println(k);
+                System.out.println(windSpeedInt.size());
+                for (int i=1; i<8; i++){
                     LocalDate thisDay = datenow.plusDays(i);
                     for (int j=0; j<8; j++){
                        int hours3 = (j*3);
